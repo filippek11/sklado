@@ -81,9 +81,6 @@ router.put(
 		const productQuantity = await Product.findById(req.params.id);
 		const formQuantity = await req.body.product;
 		const newQuantity = productQuantity.quantity + Number(formQuantity.quantity);
-		console.log(productQuantity.quantity);
-		console.log(Number(formQuantity.quantity));
-		console.log(newQuantity);
 		if (newQuantity >= 0) {
 			const product = await Product.findByIdAndUpdate(id, { $inc: { ...req.body.product } });
 			req.flash('success', 'Product updated successfully!');
